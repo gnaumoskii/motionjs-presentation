@@ -18,7 +18,8 @@
   <div class="page-content">
     <div class="landing">
       <div class="text-block" style="width: 50%;">
-        <p class="animated-paragraph"><span class="highlight-dark">Motion</span> is a powerful, lightweight animation library that delivers smooth, high-performance animations through a minimal and intuitive API.
+        <p class="animated-paragraph"><span class="highlight-dark">Motion</span> is a powerful, lightweight animation
+          library that delivers smooth, high-performance animations through a minimal and intuitive API.
         </p>
         <p style="margin: 0; padding-top:24px;" class="slow-fade-in">Features:</p>
         <ul class="slow-fade-in">
@@ -35,6 +36,158 @@
 
 
     </div>
+
+    <section style="height: auto;">
+      <pre><code class="language-js">
+// Main imports
+const { animate, scroll, hover, press, inView, stagger } = Motion;
+
+// Base function structure
+animate(target, keyframes, options);
+        </code></pre>
+
+      <table style="width:100%; border-collapse:collapse; margin-top: 72px;">
+        <thead style="background:#282c34; color:white;">
+          <tr>
+            <th style="padding:8px; text-align:left;">Parameter / Option</th>
+            <th style="padding:8px; text-align:left;">Type</th>
+            <th style="padding:8px; text-align:left;">Description</th>
+            <th style="padding:8px; text-align:left;">Example</th>
+          </tr>
+        </thead>
+        <tbody style="border: 4px solid #282c34;">
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">target</code></td>
+            <td style="padding:8px;">Element | string</td>
+            <td style="padding:8px;">The element or CSS selector to animate.</td>
+            <td style="padding:8px;"><code class="language-js">animate(".box", { x: 100 })</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">keyframes</code></td>
+            <td style="padding:8px;">Object | Array</td>
+            <td style="padding:8px;">Defines which properties to animate and their values (can be arrays for sequences).
+            </td>
+            <td style="padding:8px;"><code class="language-js">{ opacity: [0, 1], x: [0, 100] }</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">options</code></td>
+            <td style="padding:8px;">Object</td>
+            <td style="padding:8px;">Animation settings like duration, easing, delay, repeat, etc.</td>
+            <td style="padding:8px;"><code class="language-js">{ duration: 0.8, ease: "easeOut" }</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">type</code></td>
+            <td style="padding:8px;">string</td>
+            <td style="padding:8px;">
+              Defines the animation style. Can be <code class="language-js">"tween"</code> (time-based) for smooth,
+              consistent motion,
+              or <code class="language-js">"spring"</code> (physics-based) for natural, bouncy movement.
+            </td>
+            <td style="padding:8px;">
+              <code class="language-js">{ type: "spring", stiffness: 200, damping: 20 }</code>
+            </td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">duration</code></td>
+            <td style="padding:8px;">number</td>
+            <td style="padding:8px;">Time in seconds for the animation.</td>
+            <td style="padding:8px;"><code class="language-js">{ duration: 1.2 }</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">delay</code></td>
+            <td style="padding:8px;">number</td>
+            <td style="padding:8px;">Delay before animation starts (in seconds).</td>
+            <td style="padding:8px;"><code class="language-js">{ delay: 0.3 }</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">repeat</code></td>
+            <td style="padding:8px;">number | Infinity</td>
+            <td style="padding:8px;">How many times to repeat the animation.</td>
+            <td style="padding:8px;"><code class="language-js">{ repeat: Infinity }</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">direction</code></td>
+            <td style="padding:8px;">"normal" | "reverse" | "alternate"</td>
+            <td style="padding:8px;">Direction of playback for repeating animations.</td>
+            <td style="padding:8px;"><code class="language-js">{ direction: "alternate" }</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">ease</code></td>
+            <td style="padding:8px;">string | function</td>
+            <td style="padding:8px;">Easing function controlling speed curve (e.g. spring, linear, easeInOut).</td>
+            <td style="padding:8px;"><code class="language-js">{ ease: "spring" }</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">stiffness</code></td>
+            <td style="padding:8px;">number</td>
+            <td style="padding:8px;">Controls how tight a spring animation is (higher = faster stop).</td>
+            <td style="padding:8px;"><code class="language-js">{ stiffness: 200 }</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">damping</code></td>
+            <td style="padding:8px;">number</td>
+            <td style="padding:8px;">How much resistance the spring has.</td>
+            <td style="padding:8px;"><code class="language-js">{ damping: 15 }</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">mass</code></td>
+            <td style="padding:8px;">number</td>
+            <td style="padding:8px;">Controls the weight of the spring animation (affects bounce feel).</td>
+            <td style="padding:8px;"><code class="language-js">{ mass: 1.5 }</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">bounce</code></td>
+            <td style="padding:8px;">number</td>
+            <td style="padding:8px;">Controls amount of bounce (0 to 1). Used with <code>spring</code> type.</td>
+            <td style="padding:8px;"><code class="language-js">{ bounce: 0.5 }</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">onUpdate</code></td>
+            <td style="padding:8px;">function</td>
+            <td style="padding:8px;">Called every frame with the latest animated value.</td>
+            <td style="padding:8px;"><code class="language-js">onUpdate: (v) => console.log(v)</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">onComplete</code></td>
+            <td style="padding:8px;">function</td>
+            <td style="padding:8px;">Triggered once the animation finishes.</td>
+            <td style="padding:8px;"><code class="language-js">onComplete: () => console.log("Done!")</code></td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">{type: 'tween'}</code></td>
+            <td style="padding:8px;">
+              property
+            </td>
+            <td style="padding:8px;">
+              <ul style="margin:0; padding-left:16px; list-style: none; padding: 0;">
+                <li><code class="language-js">duration</code>, <code class="language-js">ease</code>, <code class="language-js">delay</code>, <code class="language-js">repeat</code>, <code class="language-js">direction</code>, <code class="language-js">repeatDelay</code></li>
+              </ul>
+            </td>
+            <td style="padding:8px;">
+              <code
+                class="language-js">animate(".box", { y: [0, 100] }, { type: "tween", duration: 0.6, ease: "easeOut" })</code>
+            </td>
+          </tr>
+          <tr style="color:#E0E0E0;">
+            <td style="padding:8px;"><code class="language-js">{type: 'spring'}</code></td>
+            <td style="padding:8px;">
+              property
+            </td>
+            <td style="padding:8px;">
+              <ul style="margin:0; padding-left:16px; list-style: none; padding: 0;">
+                <li><code class="language-js">stiffness</code>, <code class="language-js">damping</code>, <code
+                    class="language-js">mass</code>, <code class="language-js">bounce</code>, <code
+                    class="language-js">velocity</code></li>
+              </ul>
+            </td>
+            <td style="padding:8px;">
+              <code class="language-js">animate(".circle", { scale: [0, 1] }, { type: "spring", stiffness: 250, damping: 20 })</code>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
 
     <section class="section" id="section1">
       <div class="code">
@@ -157,10 +310,10 @@ press('#section5 .box', (element) => {
       </div>
       <div class="example">
         <div class="box md light"></button>
-      </div>
+        </div>
     </section>
 
-        <section class="section" id="section6">
+    <section class="section" id="section6">
       <div class="code">
         <pre><code class="language-js">
 // Using motions hover() function to handle mouse hover in and out
@@ -178,10 +331,10 @@ hover('#section5 .box', (element) => {
       </div>
       <div class="example">
         <div class="box md light"></button>
-      </div>
+        </div>
     </section>
 
-            <section class="section" id="section7">
+    <section class="section" id="section7">
       <div class="code">
         <button class="play-btn" data-section-id="7">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="#00e1ff" xmlns="http://www.w3.org/2000/svg">
@@ -203,7 +356,7 @@ animate([
       </div>
     </section>
 
-                <section class="section" id="section8">
+    <section class="section" id="section8">
       <div class="code">
         <pre><code class="language-js">
 // Fade in/out when in/out of view
@@ -222,7 +375,7 @@ inView('#section8 .box', (element) => {
       </div>
     </section>
 
-                   <section class="section" id="section9">
+    <section class="section" id="section9">
       <div class="code">
         <pre><code class="language-js">
 // Animation based on scroll value
@@ -232,11 +385,11 @@ scroll(animate('.progress-bar', { width: [0, '100%'] }, { ease: "easeOut" }))
         </code></pre>
       </div>
       <div class="example">
-<button class="example-btn light toggleScroll">Toggle Scroll</button>
+        <button class="example-btn light toggleScroll">Toggle Scroll</button>
       </div>
     </section>
 
-            <section class="section" id="section10">
+    <section class="section" id="section10">
       <div class="code">
         <button class="play-btn" data-section-id="10">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="#00e1ff" xmlns="http://www.w3.org/2000/svg">
@@ -258,7 +411,7 @@ animate("#section10 .box", { opacity: [0, 1], y: [150, 0] }, { delay: stagger(0.
       </div>
     </section>
 
-            <section class="section" id="section11">
+    <section class="section" id="section11">
       <div class="code">
         <button class="play-btn" data-section-id="11">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="#00e1ff" xmlns="http://www.w3.org/2000/svg">
@@ -282,7 +435,7 @@ animate(0, 100, {
       </div>
     </section>
 
-        <section class="section" id="section12">
+    <section class="section" id="section12">
       <div class="code">
         <button class="play-btn" data-section-id="12">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="#00e1ff" xmlns="http://www.w3.org/2000/svg">
@@ -303,31 +456,34 @@ animate('.prog-bar', { width: ['0%', '60%']},{ type: 'spring', damping: 13, stif
         </code></pre>
       </div>
       <div class="example">
-        <div style="background-color: rgb(242, 228, 228); display: flex; flex-direction: column; width: 180px; height: 120px; padding: 18px; border-radius: 12px;">
+        <div
+          style="background-color: rgb(242, 228, 228); display: flex; flex-direction: column; width: 180px; height: 120px; padding: 18px; border-radius: 12px;">
           <h2 style="margin: 0; padding: 0; margin-bottom: 18px;">Task</h2>
-            <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-between;">
-                <div>Progress</div>
-                <div class="prog-num">0%</div>
-            </div>
-            <div class="prog-bar-container" style="background-color: rgb(224, 209, 209); overflow: hidden; border-radius: 12px; height: 8px; width: 100%; margin-top:12px;">
-              <div class="prog-bar" style="background-color: #FF6B6B; width: 0%; height: 100%;">
+          <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-between;">
+            <div>Progress</div>
+            <div class="prog-num">0%</div>
+          </div>
+          <div class="prog-bar-container"
+            style="background-color: rgb(224, 209, 209); overflow: hidden; border-radius: 12px; height: 8px; width: 100%; margin-top:12px;">
+            <div class="prog-bar" style="background-color: #FF6B6B; width: 0%; height: 100%;">
 
-              </div>
             </div>
+          </div>
         </div>
       </div>
     </section>
 
   </div>
-  
+
 
   </div>
-    <div class="progress-bar hidden" style="position: fixed; bottom: 0; left: 0; width: 0; height: 8px; background-color: #FF6B6B;">
+  <div class="progress-bar hidden"
+    style="position: fixed; bottom: 0; left: 0; width: 0; height: 8px; background-color: #FF6B6B;">
 
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-javascript.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
-  <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+    <script src="main.js"></script>
 
 </body>
 
