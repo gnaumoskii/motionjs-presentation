@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>motion Presentation</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-dark.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="page-content">
+    <div class="landing">
+      <div class="text-block" style="width: 50%;">
+        <p class="animated-paragraph"><span class="highlight-dark">Motion</span> is a powerful, lightweight animation library that delivers smooth, high-performance animations through a minimal and intuitive API.
+        </p>
+        <p style="margin: 0; padding-top:24px;" class="slow-fade-in">Features:</p>
+        <ul class="slow-fade-in">
+          <li>Simple API</li>
+          <li>Animations based on keyframes or physics</li>
+          <li>Animation sequences</li>
+          <li>Performance and accessibility optimized</li>
+        </ul>
+      </div>
+      <div style="position: relative; display: flex; align-items: start;">
+        <span class="title highlight">motion</span>
+      </div>
+
+
+
+    </div>
+
+    <section class="section" id="section1">
+      <div class="code">
+        <pre><code class="language-js">
+// On click reduce the scale of the button
+const button1 = document.querySelector('#section1 .example-btn');
+
+button1.addEventListener('click', function() {
+    animate(this, { scale: 0.6 }, {
+        type: 'spring',
+        stiffness: 350,
+        damping: 15,
+    });
+});
+        </code></pre>
+      </div>
+      <div class="example">
+        <button class="example-btn light">Create</button>
+      </div>
+    </section>
+
+    <section class="section" id="section2">
+      <div class="code">
+        <pre><code class="language-js">
+// On hover increase button size
+const button2 = document.querySelector('#section2 .example-btn');
+
+button2.addEventListener('mouseenter', function() {
+    animate(this, { scale: 1.5  }, {
+        duration: 0.3,
+        easing: 'ease-out',
+    });
+});
+
+// On mouse leave restore button size
+button2.addEventListener('mouseleave', function() {
+    animate(this, { scale: 1  }, {
+        type: 'spring',
+        bounce: '0.5'
+    });
+});
+        </code></pre>
+      </div>
+      <div class="example">
+        <button class="example-btn dark-orange">Create</button>
+      </div>
+    </section>
+
+    <section class="section" id="section3">
+      <div class="code">
+        <pre><code class="language-js">
+// On mouse down reduce button size and infinitely rotate through colors
+const button3 = document.querySelector('#section3 .example-btn');
+let colorAnimation = null;
+let baseColor = '#00e1ff';
+button3.addEventListener('mousedown', function () {
+    // Scale down
+    animate(this, { scale: 0.9 }, { duration: 0.2 });
+
+    // Start looping color animation
+    colorAnimation3 = animate(this, {
+        backgroundColor: [baseColor3,'#FF6B6B', '#6a65a8ff', '#88dfa1ff', baseColor3]
+    }, {
+        duration: 2,
+        easing: 'ease-out',
+        delay: 1.5,
+        repeat: Infinity
+    });
+});
+
+// Restore the size and stop the color animation
+button3.addEventListener('mouseup', function () {
+    if (colorAnimation3) {
+        colorAnimation3.stop();
+        colorAnimation3 = null;
+    }
+
+    animate(this, { scale: 1, backgroundColor: baseColor3 }, { duration: 0.2 });
+});
+        </code></pre>
+      </div>
+      <div class="example">
+        <button class="example-btn">Edit</button>
+      </div>
+    </section>
+
+    <section class="section" id="section4">
+      <div class="code">
+        <pre><code class="language-js">
+// Run 3 animations at the same time
+const button4 = document.querySelector('#section4 .example-btn');
+button4.addEventListener('click', function() {
+    animate(this, { backgroundColor: ['#2e49d0', '#d26565ff', '#2e49d0'] }, { duration: 0.4 });
+    animate(this, { rotate: [0, 360] }, { type: 'spring', stiffness: 500, damping: 35 });
+    animate(this, { scale: [0.7, 1] }, { type: 'tween', ease: 'easeOut', duration: 0.3 });
+});
+        </code></pre>
+      </div>
+      <div class="example">
+        <button class="example-btn primary">Create</button>
+      </div>
+    </section>
+
+
+    <section class="section" id="section5">
+      <div class="code">
+        <pre><code class="language-js">
+// Using motions press() function to handle mouse press and callback
+
+const { animate, press } = Motion;
+
+press('#section5 .box', (element) => {
+    animate(element, { rotate: [0, 180], backgroundColor: ['#8df0cc', '#d26565ff'] }, { type: "spring", stiffness: 200, damping: 45 })
+
+    return () =>
+        animate(element, { rotate: 0, backgroundColor: '#8df0cc' })
+})
+
+        </code></pre>
+      </div>
+      <div class="example">
+        <div class="box md light"></button>
+      </div>
+    </section>
+
+        <section class="section" id="section6">
+      <div class="code">
+        <pre><code class="language-js">
+// Using motions hover() function to handle mouse hover in and out
+
+const { animate, hover } = Motion;
+
+hover('#section5 .box', (element) => {
+    animate(element, { rotate: [0, 180], backgroundColor: ['#8df0cc', '#d26565ff'] }, { type: "spring", stiffness: 200, damping: 45 })
+
+    return () =>
+        animate(element, { rotate: 0, backgroundColor: '#8df0cc' })
+})
+
+        </code></pre>
+      </div>
+      <div class="example">
+        <div class="box md light"></button>
+      </div>
+    </section>
+
+            <section class="section" id="section7">
+      <div class="code">
+        <button class="play-btn" data-section-id="7">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#00e1ff" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5V19L19 12L8 5Z" />
+          </svg>
+        </button>
+        <pre><code class="language-js">
+// Sequential animation
+animate([
+    ['#section7 .box', { x: [0, 150], rotate: [0, 180], backgroundColor: ['#8df0cc', '#d26565ff'] }, { type: "spring", stiffness: 250, damping: 15 }],
+    ['#section7 .box', { y: 150, rotate: [0, 180], backgroundColor: ['#d26565ff', '#8df0cc'] }, { type: "spring", stiffness: 250, damping: 15 }],
+    ['#section7 .box', { x: [150, 0], y: 150, rotate: [0, 180], backgroundColor: ['#8df0cc', '#d26565ff'] }, { type: "spring", stiffness: 250, damping: 15 }],
+    ['#section7 .box', { x: 0, y: 0, rotate: [0, 180], backgroundColor: ['#d26565ff', '#8df0cc'] }, { type: "spring", stiffness: 250, damping: 15 }]
+], { repeat: Infinity });
+        </code></pre>
+      </div>
+      <div class="example">
+        <button class="box md light"></button>
+      </div>
+    </section>
+
+                <section class="section" id="section8">
+      <div class="code">
+        <pre><code class="language-js">
+// Fade in/out when in/out of view
+const { animate, inView } = Motion;
+
+inView('#section8 .box', (element) => {
+    animate(element, { scale: [0.5, 1], opacity: [0, 1], y: [-25, 0]}, { type: "spring", stiffness: 200, damping: 45, delay: 0.1 })
+
+    return () =>
+        animate(element, { scale: [1, 0.5], opacity: [1, 0], y: [-25, 0]}, { type: "spring", stiffness: 200, damping: 45 })
+})
+        </code></pre>
+      </div>
+      <div class="example">
+        <button class="box md green"></button>
+      </div>
+    </section>
+
+                   <section class="section" id="section9">
+      <div class="code">
+        <pre><code class="language-js">
+// Animation based on scroll value
+const { animate, scroll } = Motion;
+
+scroll(animate('.progress-bar', { width: [0, '100%'] }, { ease: "easeOut" }))
+        </code></pre>
+      </div>
+      <div class="example">
+<button class="example-btn light toggleScroll">Toggle Scroll</button>
+      </div>
+    </section>
+
+            <section class="section" id="section10">
+      <div class="code">
+        <button class="play-btn" data-section-id="10">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#00e1ff" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5V19L19 12L8 5Z" />
+          </svg>
+        </button>
+        <pre><code class="language-js">
+// Animate multiple items sequentially using stagger()
+const { animate, stagger } = Motion;
+animate("#section10 .box", { opacity: [0, 1], y: [150, 0] }, { delay: stagger(0.1), type: 'spring', damping: 15, stiffness: 200 })
+
+        </code></pre>
+      </div>
+      <div class="example example-multiple">
+        <button class="box md light" style="opacity: 0;"></button>
+        <button class="box md light" style="opacity: 0;"></button>
+        <button class="box md light" style="opacity: 0;"></button>
+        <button class="box md light" style="opacity: 0;"></button>
+      </div>
+    </section>
+
+            <section class="section" id="section11">
+      <div class="code">
+        <button class="play-btn" data-section-id="11">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#00e1ff" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5V19L19 12L8 5Z" />
+          </svg>
+        </button>
+        <pre><code class="language-js">
+// Update element numeric value
+animate(0, 100, {
+    duration: 0.7, // Animation duration in seconds
+    ease: 'easeOut',
+    onUpdate: (value) => {
+        // Value is float by default
+        document.querySelector('.number-display').textContent = Math.round(value); // Update the element's text content
+    },
+});
+        </code></pre>
+      </div>
+      <div class="example">
+        <div class="number-display">0</div>
+      </div>
+    </section>
+
+        <section class="section" id="section12">
+      <div class="code">
+        <button class="play-btn" data-section-id="12">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#00e1ff" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5V19L19 12L8 5Z" />
+          </svg>
+        </button>
+        <pre><code class="language-js">
+// Example task values animation
+animate(0, 60, {
+    duration: 0.7,
+    onUpdate: (value) => {
+        // Value is float by default
+        document.querySelector('.prog-num').textContent = Math.round(value) + '%';
+    },
+});
+
+animate('.prog-bar', { width: ['0%', '60%']},{ type: 'spring', damping: 13, stiffness: 100 })
+        </code></pre>
+      </div>
+      <div class="example">
+        <div style="background-color: rgb(242, 228, 228); display: flex; flex-direction: column; width: 180px; height: 120px; padding: 18px; border-radius: 12px;">
+          <h2 style="margin: 0; padding: 0; margin-bottom: 18px;">Task</h2>
+            <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-between;">
+                <div>Progress</div>
+                <div class="prog-num">0%</div>
+            </div>
+            <div class="prog-bar-container" style="background-color: rgb(224, 209, 209); overflow: hidden; border-radius: 12px; height: 8px; width: 100%; margin-top:12px;">
+              <div class="prog-bar" style="background-color: #FF6B6B; width: 0%; height: 100%;">
+
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  
+
+  </div>
+    <div class="progress-bar hidden" style="position: fixed; bottom: 0; left: 0; width: 0; height: 8px; background-color: #FF6B6B;">
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+  <script src="main.js"></script>
+
+</body>
+
+</html>

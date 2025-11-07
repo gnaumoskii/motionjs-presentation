@@ -1,0 +1,195 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #102123; 
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 1rem;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    width: 80%;
+    border-radius: 1rem;
+    margin: 0 1rem;
+    padding: 0;
+}
+
+.title, .landing, .number-display {
+    color: #E0E0E0;
+    font-size: 2.5rem;
+    letter-spacing: 0.2px;
+    font-weight: 600;
+}
+
+.landing {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 90vh;
+    gap: 5rem;
+}
+
+.highlight {
+    background-color: #00FF85;
+    color: black;
+    padding: 4px 12px;
+    border-radius: 1rem;
+    font-weight: 800;
+
+}
+
+.text-block {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.highlight-dark {
+    background-color: #070f10;
+    border-radius: 0.75rem;
+    padding: 4px 10px;
+    color: white;
+    line-height:1.6;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+}
+
+section {
+    height: 80dvh;
+}
+
+.slow-fade-in {
+    opacity: 0;
+}
+
+.section {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+
+}
+
+.example {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.code {
+    width: 60%;
+}
+
+    /* Scrollbar styling for code block */
+    .language-js::-webkit-scrollbar {
+      height: 8px;
+      background: #1e1e1e;
+    }
+    .language-js::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 4px;
+    }
+
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.box.md {
+    width: 96px;
+    height: 96px;
+    border-radius: 12px;
+}
+
+.box.green {
+    background-color: rgb(96, 183, 96);
+}
+
+.box.blue {
+    background-color: rgb(32, 135, 218);
+}
+
+button.play-btn {
+  padding: 0.25rem 1rem;
+  background-color: #1E1E2F; /* dark button */
+  color: #1394a5; /* accent color */
+  font-weight: 600;
+  border: 2px solid #1394a5;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  margin-bottom: 0.75rem;
+}
+
+button.play-btn:hover {
+  background-color: #2C2C3E;
+  color: #00e1ff;
+  border-color: #00e1ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+}
+
+button.play-btn:active {
+  background-color: #1A1A28;
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+button {
+    font-family: 'Inter';
+}
+button.example-btn {
+  padding: 1.25rem 2rem;
+  background-color: #00e1ff;
+  color: #1E1E2F;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+.example-btn.light {
+    background-color: #E0E0E0
+}
+
+.example-btn.dark-orange {
+    background-color: #FF6B6B;
+}
+.example-btn.lime {
+    background-color: #6BCB77;
+}
+
+.example-btn.primary {
+    background-color: #2e49d0;
+    color: white;
+}
+
+.box.light {
+    background-color: #8df0cc;
+}
+
+.hidden {
+    display: none;
+}
+
+.example-multiple {
+    display: flex;
+    gap: 20px;
+}
